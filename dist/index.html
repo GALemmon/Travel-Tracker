@@ -7,16 +7,17 @@
     <title>Travel Tracker</title>
   </head>
   <body>
-    <section class="header">
-      <h1 class="welcome-message"></h1>
+    <div class="left-container">
+      <section class="header">
+        <h1 class="welcome-message"></h1>
+      </section>
       <h2 class="total-spent"></h2>
-    </section>
-    <section>
-      <p class="trips-area"></p>
-    </section>
-    <img src="./images/turing-logo.png" alt="turing logo" />
-
-    <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+    </div>
+    <div class="right-container">
+      <section>
+        <ul class="trips-area"></ul>
+      </section>
+    </div>
     <script src="bundle.js"></script>
   </body>
 </html>
