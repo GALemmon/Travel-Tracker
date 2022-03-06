@@ -1,5 +1,5 @@
 import chai from 'chai';
-import Destination from '../src/Destination';
+import Destination from '../src/Destination.js';
 const expect = chai.expect;
 
 describe('Destination', () => {
@@ -18,7 +18,7 @@ describe('Destination', () => {
   });
 
   it('should have an id', () => {
-    expect(destination.id).to.equal('1');
+    expect(destination.id).to.equal(1);
   });
 
   it('should have an estimated flight cost per traveler', () => {
