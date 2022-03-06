@@ -1,12 +1,12 @@
 //----------- Imports ------------------
 import fetchAPI from './apiCalls';
+import domUpdates from './DomUpdates';
 import Traveler from './Traveler';
-import Trip from '../src/Trip';
+import Trip from './Trip';
 import Destination from './Destination';
 import TravelRepo from './TravelRepo';
 import './images/turing-logo.png';
-import './css/base.scss';
-import domUpdates from './DomUpdates';
+import './css/base.css';
 
 //----------- Global Variables -------------
 const rawTravelersData = fetchAPI.getTravelers();
@@ -86,3 +86,5 @@ const updateDom = () => {
 
 //--------------- Scripts -----------------
 window.onload = (event) => (event, renderPage());
+
+
