@@ -23,7 +23,7 @@ class TravelRepo {
     return updatedTravelerData;
   }
 
-  determineCurrentUser(id) {
+  determineCurrentTraveler(id) {
     return (this.currentTraveler = this.travelers.find(
       (user) => id === user.id
     ));

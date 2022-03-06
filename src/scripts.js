@@ -48,10 +48,11 @@ const renderPage = () => {
       );
       generateNewTravelRepo(travelers, trips, destinations);
       buildOutData(globalCurrentTravelRepo);
-      globalCurrentTravelRepo.determineCurrentUser(
+      globalCurrentTravelRepo.determineCurrentTraveler(
         getRandomID(globalCurrentTravelRepo.travelers).id
       );
       updateDom();
+
 
       console.log(globalCurrentTravelRepo);
     }
