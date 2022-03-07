@@ -7,6 +7,14 @@ import Destination from './Destination';
 import TravelRepo from './TravelRepo';
 import './css/base.css';
 
+//----------- Query Selectors --------------
+const newTripForm = document.querySelector('.new-trip-form');
+const dateInput = document.querySelector('.date-input');
+const durationInput = document.querySelector('.duration-input');
+const travelersInput = document.querySelector('.travelers-input');
+const destinationsInput = document.querySelector('.dest-drop-menu');
+const submitBtn = document.querySelector('.submit-button')
+
 //----------- Global Variables -------------
 const rawTravelersData = fetchAPI.getTravelers();
 const rawTripsData = fetchAPI.getTrips();
@@ -75,6 +83,7 @@ const buildOutData = (travelRepo) => {
 };
 
 const updateDom = () => {
+  domUpdates.fillDestinationMenu(globalCurrentTravelRepo.destinations);
   domUpdates.displayWelcomeMessage(
     globalCurrentTravelRepo.currentTraveler.firstName
   );
@@ -86,6 +95,24 @@ const updateDom = () => {
     globalCurrentTravelRepo.destinations
   );
 };
+
+submitBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const newTrip = {
+    id: +globalCurrentTravelRepo.trips.length + 1,
+    userID: +globalCurrentTravelRepo.currentTraveler.id,
+    destinationID: +destinationsInput.value,
+    travelers: +travelersInput.value,
+    date: `${dateInput.value}`,
+    duration: +durationInput.value,
+    status: 'pending',
+    suggestedActivities: [],
+  };
+  console.log(newTrip)
+  fetchAPI.postNewTrip(newTrip);
+  // e.target.reset();
+  // updateDom()
+});
 
 //--------------- Scripts -----------------
 window.onload = (event) => (event, renderPage());

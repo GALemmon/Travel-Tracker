@@ -1,8 +1,15 @@
 const welcomeMessage = document.querySelector('.welcome-message');
 const totalCost = document.querySelector('.total-spent');
 const tripsList = document.querySelector('.trips-area');
+const destMenu = document.querySelector('.dest-drop-menu');
 
 const domUpdates = {
+  fillDestinationMenu(destinations) {
+    destinations.forEach(destination => {
+      destMenu.innerHTML += `<option value="${destination.id}">${destination.name}</option>`
+    })
+  },
+
   displayWelcomeMessage(traveler) {
     return (welcomeMessage.innerText = `Hello, ${traveler}!  Let's take a trip.`);
   },

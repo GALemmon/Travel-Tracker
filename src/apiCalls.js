@@ -14,6 +14,20 @@ const fetchAPI = {
       response.json()
     );
   },
+  postNewTrip(newTrip) {
+    fetch('http://localhost:3001/api/v1/trips', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newTrip),
+    }).then((response) => {
+      if (!response.ok) {
+        throw new Error('OOPS!  Somethimg went wrong.');
+      } else {
+        alert('Your trip request has been submitted!');
+        return response.json();
+      }
+    });
+  },
 };
 
 export default fetchAPI;
