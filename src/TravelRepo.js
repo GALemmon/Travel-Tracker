@@ -100,7 +100,7 @@ class TravelRepo {
         if (trip.date.slice(0, 4) == 2019) {
           return (total += trip.totalCost);
         }
-        return traveler.spentIn2019 = total;
+        return (traveler.spentIn2019 = total);
       }, 0);
       traveler.trips.reduce((total, trip) => {
         if (trip.date.slice(0, 4) == 2020) {
@@ -119,32 +119,6 @@ class TravelRepo {
           return (total += trip.totalCost);
         }
         return (traveler.spentIn2022 = total);
-      }, 0);
-      this.travelers = travelerData;
-    });
-  }
-
-  getTraveler2020Cost() {
-    const travelerData = [...this.travelers];
-    travelerData.map((traveler) => {
-      traveler.spentIn2020 = traveler.trips.reduce((total, trip) => {
-        if (trip.date.slice(0, 4) == 2020) {
-          return (total += trip.totalCost);
-        }
-        return total;
-      }, 0);
-      this.travelers = travelerData;
-    });
-  }
-
-  getTravelerCurrentYearCost(todaysDate) {
-    const travelerData = [...this.travelers];
-    travelerData.map((traveler) => {
-      traveler.yearSpent = traveler.trips.reduce((total, trip) => {
-        if (trip.date.slice(0, 4) === todaysDate.slice(0, 4)) {
-          return (total += trip.totalCost);
-        }
-        return total;
       }, 0);
       this.travelers = travelerData;
     });
