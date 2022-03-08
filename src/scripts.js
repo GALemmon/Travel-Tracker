@@ -76,7 +76,10 @@ const getRandomID = (array) => {
   return randomIndex;
 };
 
+
+
 const buildOutData = (travelRepo) => {
+  travelRepo.todaysDate();
   travelRepo.buildTravelerDataArrays();
   travelRepo.getTotalCostPerTrip();
   travelRepo.returnFirstNames();
