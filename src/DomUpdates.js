@@ -1,4 +1,3 @@
-
 const welcomeMessage = document.querySelector('.welcome-message');
 const totalCost = document.querySelector('.total-spent');
 const tripsList = document.querySelector('.trips-area');
@@ -55,13 +54,14 @@ const domUpdates = {
   },
 
   estimateCost(destinations) {
-    const destination = destinations.find(destination => destination.id == destMenu.value);
-    console.log(destination)
+    const destination = destinations.find(
+      (destination) => destination.id == destMenu.value
+    );
     const destCost =
       destination.estCostFlight * travlersMenu.value +
       destination.estCostLodging * durationMenu.value;
-    const totalCost = destCost + (destCost / 10);
-    return estimatedCost.innerText = `$${totalCost}`;
+    const totalCost = destCost + destCost / 10;
+    return (estimatedCost.innerText = `$${totalCost}`);
   },
 };
 
