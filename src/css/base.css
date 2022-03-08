@@ -1,0 +1,80 @@
+body, html {
+  background-color: #d9d9d9;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  font-family: 'Smooch Sans', sans-serif;
+  position: relative;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  height: 30%;
+  width: 40%;
+  margin: 10px;
+}
+
+.right-container {
+  display: flexbox;
+
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border-style: solid;
+  border-color: black;
+  border: 1px;
+  border-radius: 2px;
+}
+
+
+.card .text > * + * {
+  margin-top: 0.75rem;
+}
+
+.card .text :last-child {
+  margin-top: auto;
+}
+
+.card .text :nth-last-child(2) {
+  margin-bottom: 0.75rem;
+}
+
+.card .text {
+  max-width: 60ch;
+}
+
+.card + .card {
+    margin-top: 1.5rem;
+}
+
+@supports (display: grid) {
+    .cards > ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+        grid-gap: 1.5rem;
+    }
+
+    .card + .card {
+        margin-top: 0;
+    }
+}
+
+.card .img {
+  height: 5rem;
+}
+
+.card .img img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
