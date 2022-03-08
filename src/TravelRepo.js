@@ -29,6 +29,15 @@ class TravelRepo {
     ));
   }
 
+  todaysDate() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0");
+    let yyyy = today.getFullYear();
+    let newToday = `${yyyy}/${mm}/${dd}`;
+    this.currentDate = newToday;
+  }
+
   findArrayEntry(id, array) {
     const entry = array.find((entry) => entry.id === id);
     return entry;

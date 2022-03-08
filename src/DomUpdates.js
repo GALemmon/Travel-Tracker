@@ -48,6 +48,7 @@ const domUpdates = {
           <h2>${destination.name}</h2>
           <h3>${trip.travelers} people, ${trip.duration} days</h3>
           <h3>Total Cost: $${trip.totalCost.toFixed(2)}</h3>
+          <h4>${trip.status}</h4>
         </div>
       </li>`;
     });
