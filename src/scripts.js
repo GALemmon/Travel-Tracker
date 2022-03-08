@@ -84,6 +84,7 @@ const buildOutData = (travelRepo) => {
   travelRepo.getTotalCostPerTrip();
   travelRepo.returnFirstNames();
   travelRepo.getTotalTravelerCost();
+  travelRepo.getTravelerCostByYear();
 };
 
 const updateDom = () => {
