@@ -1,5 +1,6 @@
 const welcomeMessage = document.querySelector('.welcome-message');
 const totalCost = document.querySelector('.total-spent');
+const yearsTotals = document.querySelector('.years-totals');
 const tripsList = document.querySelector('.trips-area');
 const durationMenu = document.querySelector('.duration-drop-menu');
 const travlersMenu = document.querySelector('.travelers-drop-menu');
@@ -26,13 +27,23 @@ const domUpdates = {
   },
 
   displayWelcomeMessage(traveler) {
-    return (welcomeMessage.innerText = `Hello, ${traveler}!  Let's take a trip.`);
+    return (welcomeMessage.innerText = `Hello, ${traveler}!`);
   },
 
   displayCurrentTravelerTotalCost(totalSpent) {
     return (totalCost.innerText = `You have spent a total of $${totalSpent.toFixed(
       2
-    )} on travel.  This includes a 10% travel agent fee.`);
+    )} on travel.  This total includes a 10% travel agent fee and any pending trips.`);
+  },
+
+  displayTotalsForYears(traveler) {
+    return (yearsTotals.innerHTML = `This year you have spent: $${traveler.spentIn2022.toFixed(
+      2
+    )}.<br> 
+    In 2021, you spent: $${traveler.spentIn2021.toFixed(
+      2
+    )}.<br> In 2020, you spent: $${traveler.spentIn2020.toFixed(2)}.<br> 
+    In 2019, you spent: $${traveler.spentIn2019.toFixed(2)}.`);
   },
 
   populateTravelerTripCards(travelerTrips, destinations) {

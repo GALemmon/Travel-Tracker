@@ -76,8 +76,6 @@ const getRandomID = (array) => {
   return randomIndex;
 };
 
-
-
 const buildOutData = (travelRepo) => {
   travelRepo.todaysDate();
   travelRepo.buildTravelerDataArrays();
@@ -95,6 +93,7 @@ const updateDom = () => {
   domUpdates.displayCurrentTravelerTotalCost(
     globalCurrentTravelRepo.currentTraveler.totalSpent
   );
+  domUpdates.displayTotalsForYears(globalCurrentTravelRepo.currentTraveler);
   domUpdates.populateTravelerTripCards(
     globalCurrentTravelRepo.currentTraveler.trips,
     globalCurrentTravelRepo.destinations
@@ -108,28 +107,26 @@ const fillMenus = () => {
 };
 
 const updatePageAfterTripSubmission = () => {
-  fetchAPI.getTrips().then(
-    (values) => {
-      console.log(values)
-      const trips = values.trips.map(
-        (data) =>
-          new Trip(
-            data.date,
-            data.destinationID,
-            data.duration,
-            data.id,
-            data.status,
-            data.suggestedActivities,
-            data.travelers,
-            data.userID
-          )
-        );
-      globalCurrentTravelRepo.trips = trips;
-      buildOutData(globalCurrentTravelRepo)
-      updateDom()
-    }
-  )
-}
+  fetchAPI.getTrips().then((values) => {
+    console.log(values);
+    const trips = values.trips.map(
+      (data) =>
+        new Trip(
+          data.date,
+          data.destinationID,
+          data.duration,
+          data.id,
+          data.status,
+          data.suggestedActivities,
+          data.travelers,
+          data.userID
+        )
+    );
+    globalCurrentTravelRepo.trips = trips;
+    buildOutData(globalCurrentTravelRepo);
+    updateDom();
+  });
+};
 
 //--------------- Scripts -----------------
 window.onload = (event) => (event, renderPage());
@@ -148,7 +145,7 @@ submitBtn.addEventListener('click', (e) => {
   };
   console.log(newTrip);
   fetchAPI.postNewTrip(newTrip);
-  updatePageAfterTripSubmission()
+  updatePageAfterTripSubmission();
 });
 
 estimateBtn.addEventListener('click', (e) => {
