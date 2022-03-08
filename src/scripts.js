@@ -8,7 +8,6 @@ import TravelRepo from './TravelRepo';
 import './css/base.css';
 
 //----------- Query Selectors --------------
-// const newTripForm = document.querySelector('.new-trip-form');
 const dateInput = document.querySelector('.date-input');
 const durationInput = document.querySelector('.duration-drop-menu');
 const travelersInput = document.querySelector('.travelers-drop-menu');
@@ -104,7 +103,29 @@ const fillMenus = () => {
   domUpdates.fillDestinationMenu(globalCurrentTravelRepo.destinations);
 };
 
-
+const updatePageAfterTripSubmission = () => {
+  fetchAPI.getTrips().then(
+    (values) => {
+      console.log(values)
+      const trips = values.trips.map(
+        (data) =>
+          new Trip(
+            data.date,
+            data.destinationID,
+            data.duration,
+            data.id,
+            data.status,
+            data.suggestedActivities,
+            data.travelers,
+            data.userID
+          )
+        );
+      globalCurrentTravelRepo.trips = trips;
+      buildOutData(globalCurrentTravelRepo)
+      updateDom()
+    }
+  )
+}
 
 //--------------- Scripts -----------------
 window.onload = (event) => (event, renderPage());
@@ -123,9 +144,9 @@ submitBtn.addEventListener('click', (e) => {
   };
   console.log(newTrip);
   fetchAPI.postNewTrip(newTrip);
-  renderPage();
+  updatePageAfterTripSubmission()
 });
 
 estimateBtn.addEventListener('click', (e) => {
-    domUpdates.estimateCost(globalCurrentTravelRepo.destinations)
-  })
+  domUpdates.estimateCost(globalCurrentTravelRepo.destinations);
+});
