@@ -24,6 +24,7 @@ const fetchAPI = {
         alert('OOPS! Something went wrong.');
         throw new Error('OOPS!  Somethimg went wrong.');
       } else {
+        console.log('new trip posted')
         alert('Your trip request has been submitted!');
         return response.json();
       }
