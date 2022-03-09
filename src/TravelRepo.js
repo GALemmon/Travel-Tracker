@@ -16,14 +16,16 @@ class TravelRepo {
 
   assignTravelerUsernames() {
     const updatedTravelerData = [...this.travelers];
-    updatedTravelerData.map(traveler => traveler.username = `traveler${traveler.id}`)
+    updatedTravelerData.map(
+      (traveler) => (traveler.username = `traveler${traveler.id}`)
+    );
     this.travelers = updatedTravelerData;
   }
 
   assignTravelerPasswords() {
-    const updatedTravelerData = [...this.travelers]
-    updatedTravelerData.map(traveler => traveler.password = 'travel')
-    this.travelers = updatedTravelerData
+    const updatedTravelerData = [...this.travelers];
+    updatedTravelerData.map((traveler) => (traveler.password = 'travel'));
+    this.travelers = updatedTravelerData;
   }
 
   returnFirstNames() {
@@ -35,11 +37,11 @@ class TravelRepo {
     return updatedTravelerData;
   }
 
-  determineCurrentTraveler(id) {
-    return (this.currentTraveler = this.travelers.find(
-      (user) => id === user.id
-    ));
-  }
+  // determineCurrentTraveler(id) {
+  //   return (this.currentTraveler = this.travelers.find(
+  //     (user) => id === user.id
+  //   ));
+  // }
 
   todaysDate() {
     let today = new Date();

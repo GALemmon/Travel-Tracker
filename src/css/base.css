@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   background-color: #d9d9d9;
   background-repeat: no-repeat;
   height: 100%;
@@ -27,10 +28,9 @@ body {
 
 .right-container {
   display: flexbox;
-
 }
 
-.card{
+.card {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -39,7 +39,6 @@ body {
   border: 1px;
   border-radius: 2px;
 }
-
 
 .card .text > * + * {
   margin-top: 0.75rem;
@@ -58,19 +57,19 @@ body {
 }
 
 .card + .card {
-    margin-top: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 @supports (display: grid) {
-    .cards > ul {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-        grid-gap: 1.5rem;
-    }
+  .cards > ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    grid-gap: 1.5rem;
+  }
 
-    .card + .card {
-        margin-top: 0;
-    }
+  .card + .card {
+    margin-top: 0;
+  }
 }
 
 .card .img {

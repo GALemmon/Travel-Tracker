@@ -77,11 +77,11 @@ const domUpdates = {
   },
 
   hide(element) {
-    element.classList.add("hidden");
+    element.classList.add('hidden');
   },
 
   show(element) {
-    element.classList.remove("hidden");
+    element.classList.remove('hidden');
   },
 };
 
