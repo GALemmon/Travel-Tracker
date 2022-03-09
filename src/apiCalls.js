@@ -21,6 +21,7 @@ const fetchAPI = {
       body: JSON.stringify(newTrip),
     }).then((response) => {
       if (!response.ok) {
+        alert('OOPS! Something went wrong.');
         throw new Error('OOPS!  Somethimg went wrong.');
       } else {
         alert('Your trip request has been submitted!');
