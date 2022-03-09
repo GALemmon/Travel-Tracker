@@ -72,11 +72,6 @@ const generateNewTravelRepo = (travelers, trips, destinations) => {
   return (globalCurrentTravelRepo = travelRepo);
 };
 
-const getRandomID = (array) => {
-  const randomIndex = array[Math.floor(Math.random() * array.length)];
-  return randomIndex;
-};
-
 const buildOutData = (travelRepo) => {
   travelRepo.todaysDate();
   travelRepo.buildTravelerDataArrays();
@@ -121,7 +116,7 @@ const checkLoginCreds = (userRepo) => {
       updateDom();
     }
     if (
-      usernameInput.value !== traveler.username ||
+      usernameInput.value !== traveler.username &&
       passwordInput.value !== traveler.password
     ) {
       loginMessage.innerText = `Please try again!`;

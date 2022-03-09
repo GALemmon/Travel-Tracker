@@ -37,14 +37,17 @@ const domUpdates = {
   },
 
   displayTotalsForYears(traveler) {
+    console.log(traveler.spentIn2020);
+    const total2020 = traveler.spentIn2020.toFixed(2) ?? 0.0;
     return (yearsTotals.innerHTML = `This year you have spent: $${traveler.spentIn2022.toFixed(
       2
     )}.<br> 
     In 2021, you spent: $${traveler.spentIn2021.toFixed(
       2
-    )}.<br> In 2020, you spent: $${traveler.spentIn2020.toFixed(2)}.<br> 
+    )}.<br> In 2020, you spent: $${total2020}.<br> 
     In 2019, you spent: $${traveler.spentIn2019.toFixed(2)}.`);
   },
+  // )}.<br> In 2020, you spent: $${traveler.spentIn2020.toFixed(2)}.<br>
 
   populateTravelerTripCards(travelerTrips, destinations) {
     travelerTrips.forEach((trip) => {
