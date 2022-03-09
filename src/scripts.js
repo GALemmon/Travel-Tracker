@@ -84,6 +84,7 @@ const buildOutData = (travelRepo) => {
 };
 
 const updateDom = () => {
+  // domUpdates.clearEstimatedCost();
   fillMenus();
   domUpdates.displayWelcomeMessage(
     globalCurrentTravelRepo.currentTraveler.firstName
@@ -128,7 +129,7 @@ const checkLoginCreds = (userRepo) => {
 
 const updatePageAfterTripSubmission = () => {
   fetchAPI.getTrips().then((values) => {
-    console.log(values);
+    console.log('new trips: ', values);
     const trips = values.trips.map(
       (data) =>
         new Trip(
@@ -182,6 +183,7 @@ submitBtn.addEventListener('click', (e) => {
     suggestedActivities: [],
   };
   console.log(newTrip);
-  fetchAPI.postNewTrip(newTrip);
-  updatePageAfterTripSubmission();
+  // fetchAPI.postNewTrip(newTrip).then(() => updatePageAfterTripSubmission());
+  fetchAPI.postNewTrip(newTrip)
+  setTimeout(() => updatePageAfterTripSubmission(), 200);
 });
