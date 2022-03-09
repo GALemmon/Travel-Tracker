@@ -174,32 +174,27 @@ describe('TravelRepo', () => {
     expect(travelRepo.travelers[2].firstName).to.equal('Sibby');
   });
 
-  it('should determine the current traveler', () => {
-    travelRepo.determineCurrentTraveler(2);
-    expect(travelRepo.currentTraveler).to.eql(travelers[1]);
-  });
-
   it('should find and object in an array', () => {
     let entry = travelRepo.findArrayEntry(2, travelers);
     expect(entry).to.equal(travelers[1]);
   });
 
-  it('should claculate the filght cost for each trip', () => {
+  it('should calculate the filght cost for each trip', () => {
     travelRepo.findTripFlightCost();
     expect(travelRepo.travelers[0].trips[0].flightCost).to.equal(400);
   });
 
-  it('should claculate the lodging cost for each trip', () => {
+  it('should calculate the lodging cost for each trip', () => {
     travelRepo.findTripLodgingCost();
     expect(travelRepo.travelers[0].trips[0].lodgingCost).to.equal(560);
   });
 
-  it('should claculate the total cost for each trip, including a 10% fee', () => {
+  it('should calculate the total cost for each trip, including a 10% fee', () => {
     travelRepo.getTotalCostPerTrip();
     expect(travelRepo.travelers[0].trips[0].totalCost).to.equal(1056);
   });
 
-  it('should claculate the total travel cost for each traveler', () => {
+  it('should calculate the total travel cost for each traveler', () => {
     travelRepo.getTotalTravelerCost();
     expect(travelRepo.travelers[0].totalSpent).to.equal(3872);
   });
