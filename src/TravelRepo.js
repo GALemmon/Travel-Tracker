@@ -14,6 +14,18 @@ class TravelRepo {
     return updatedTravelerData;
   }
 
+  assignTravelerUsernames() {
+    const updatedTravelerData = [...this.travelers];
+    updatedTravelerData.map(traveler => traveler.username = `traveler${traveler.id}`)
+    this.travelers = updatedTravelerData;
+  }
+
+  assignTravelerPasswords() {
+    const updatedTravelerData = [...this.travelers]
+    updatedTravelerData.map(traveler => traveler.password = 'travel')
+    this.travelers = updatedTravelerData
+  }
+
   returnFirstNames() {
     const updatedTravelerData = [...this.travelers];
     updatedTravelerData.map(

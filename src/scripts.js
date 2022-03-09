@@ -80,6 +80,8 @@ const getRandomID = (array) => {
 const buildOutData = (travelRepo) => {
   travelRepo.todaysDate();
   travelRepo.buildTravelerDataArrays();
+  travelRepo.assignTravelerUsernames();
+  travelRepo.assignTravelerPasswords();
   travelRepo.getTotalCostPerTrip();
   travelRepo.returnFirstNames();
   travelRepo.getTotalTravelerCost();

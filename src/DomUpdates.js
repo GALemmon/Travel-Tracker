@@ -75,6 +75,14 @@ const domUpdates = {
     const totalCost = destCost + destCost / 10;
     return (estimatedCost.innerText = `Estimated Cost: $${totalCost}`);
   },
+
+  hide(element) {
+    element.classList.add("hidden");
+  },
+
+  show(element) {
+    element.classList.remove("hidden");
+  },
 };
 
 export default domUpdates;
