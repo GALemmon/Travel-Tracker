@@ -8,12 +8,19 @@ import TravelRepo from './TravelRepo';
 import './css/base.css';
 
 //----------- Query Selectors --------------
+const loginPage = document.querySelector('.login-page');
+const userDash = document.querySelector('.user-dashboard');
+const loginMessage = document.querySelector('.lower-initial-message');
+
+//----------- Inputs & Buttons --------------
+const usernameInput = document.querySelector('.username-input');
+const passwordInput = document.querySelector('.password-input');
+const loginBtn = document.querySelector('.login-submit-button');
 const dateInput = document.querySelector('.date-input');
 const durationInput = document.querySelector('.duration-drop-menu');
 const travelersInput = document.querySelector('.travelers-drop-menu');
 const destinationsInput = document.querySelector('.dest-drop-menu');
 const submitBtn = document.querySelector('.submit-button');
-const estimateBtn = document.querySelector('.estimate-cost');
 const inputFields = document.querySelectorAll('.input');
 
 //----------- Global Variables -------------
@@ -56,13 +63,6 @@ const renderPage = () => {
       );
       generateNewTravelRepo(travelers, trips, destinations);
       buildOutData(globalCurrentTravelRepo);
-      globalCurrentTravelRepo.determineCurrentTraveler(15);
-      // globalCurrentTravelRepo.determineCurrentTraveler(
-      //   getRandomID(globalCurrentTravelRepo.travelers).id
-      // );
-      updateDom();
-
-      console.log(globalCurrentTravelRepo);
     }
   );
 };
@@ -80,6 +80,8 @@ const getRandomID = (array) => {
 const buildOutData = (travelRepo) => {
   travelRepo.todaysDate();
   travelRepo.buildTravelerDataArrays();
+  travelRepo.assignTravelerUsernames();
+  travelRepo.assignTravelerPasswords();
   travelRepo.getTotalCostPerTrip();
   travelRepo.returnFirstNames();
   travelRepo.getTotalTravelerCost();
@@ -107,6 +109,28 @@ const fillMenus = () => {
   domUpdates.fillDestinationMenu(globalCurrentTravelRepo.destinations);
 };
 
+const checkLoginCreds = (userRepo) => {
+  userRepo.travelers.forEach((traveler) => {
+    if (
+      usernameInput.value === traveler.username &&
+      passwordInput.value === traveler.password
+    ) {
+      domUpdates.hide(loginPage);
+      domUpdates.show(userDash);
+      userRepo.currentTraveler = traveler;
+      updateDom();
+    }
+    if (
+      usernameInput.value !== traveler.username ||
+      passwordInput.value !== traveler.password
+    ) {
+      loginMessage.innerText = `Please try again!`;
+      usernameInput.value = null;
+      passwordInput.value = null;
+    }
+  });
+};
+
 const updatePageAfterTripSubmission = () => {
   fetchAPI.getTrips().then((values) => {
     console.log(values);
@@ -132,6 +156,23 @@ const updatePageAfterTripSubmission = () => {
 //--------------- Scripts -----------------
 window.onload = (event) => (event, renderPage());
 
+loginBtn.addEventListener('click', (e) => {
+  checkLoginCreds(globalCurrentTravelRepo);
+});
+
+inputFields.forEach((input) =>
+  input.addEventListener('change', (e) => {
+    if (
+      dateInput.value &&
+      durationInput.value &&
+      travelersInput.value &&
+      destinationsInput.value
+    ) {
+      domUpdates.estimateCost(globalCurrentTravelRepo.destinations);
+    }
+  })
+);
+
 submitBtn.addEventListener('click', (e) => {
   e.preventDefault();
   const formattedDate = `${dateInput.value}`.replaceAll('-', '/');
@@ -149,16 +190,3 @@ submitBtn.addEventListener('click', (e) => {
   fetchAPI.postNewTrip(newTrip);
   updatePageAfterTripSubmission();
 });
-
-inputFields.forEach((input) =>
-  input.addEventListener('change', (e) => {
-    if (
-      dateInput.value &&
-      durationInput.value &&
-      travelersInput.value &&
-      destinationsInput.value
-    ) {
-      domUpdates.estimateCost(globalCurrentTravelRepo.destinations);
-    }
-  })
-);
