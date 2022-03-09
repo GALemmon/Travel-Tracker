@@ -73,7 +73,7 @@ const domUpdates = {
       destination.estCostFlight * travlersMenu.value +
       destination.estCostLodging * durationMenu.value;
     const totalCost = destCost + destCost / 10;
-    return (estimatedCost.innerText = `$${totalCost}`);
+    return (estimatedCost.innerText = `Estimated Cost: $${totalCost}`);
   },
 };
 

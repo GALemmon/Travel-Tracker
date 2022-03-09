@@ -14,6 +14,7 @@ const travelersInput = document.querySelector('.travelers-drop-menu');
 const destinationsInput = document.querySelector('.dest-drop-menu');
 const submitBtn = document.querySelector('.submit-button');
 const estimateBtn = document.querySelector('.estimate-cost');
+const inputFields = document.querySelectorAll('.input');
 
 //----------- Global Variables -------------
 const rawTravelersData = fetchAPI.getTravelers();
@@ -133,12 +134,13 @@ window.onload = (event) => (event, renderPage());
 
 submitBtn.addEventListener('click', (e) => {
   e.preventDefault();
+  const formattedDate = `${dateInput.value}`.replaceAll('-', '/');
   const newTrip = {
     id: +globalCurrentTravelRepo.trips.length + 1,
     userID: +globalCurrentTravelRepo.currentTraveler.id,
     destinationID: +destinationsInput.value,
     travelers: +travelersInput.value,
-    date: `${dateInput.value}`,
+    date: formattedDate,
     duration: +durationInput.value,
     status: 'pending',
     suggestedActivities: [],
@@ -148,6 +150,15 @@ submitBtn.addEventListener('click', (e) => {
   updatePageAfterTripSubmission();
 });
 
-estimateBtn.addEventListener('click', (e) => {
-  domUpdates.estimateCost(globalCurrentTravelRepo.destinations);
-});
+inputFields.forEach((input) =>
+  input.addEventListener('change', (e) => {
+    if (
+      dateInput.value &&
+      durationInput.value &&
+      travelersInput.value &&
+      destinationsInput.value
+    ) {
+      domUpdates.estimateCost(globalCurrentTravelRepo.destinations);
+    }
+  })
+);
