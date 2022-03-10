@@ -182,7 +182,7 @@ submitBtn.addEventListener('click', (e) => {
     status: 'pending',
     suggestedActivities: [],
   };
-  console.log(newTrip);
+  // console.log(newTrip);
   // fetchAPI.postNewTrip(newTrip).then(() => updatePageAfterTripSubmission());
   fetchAPI.postNewTrip(newTrip)
   setTimeout(() => updatePageAfterTripSubmission(), 200);
